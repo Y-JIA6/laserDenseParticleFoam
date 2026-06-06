@@ -1,0 +1,189 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2506                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      kinematicCloudProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solution
+{
+    active          true;
+    coupled         true;
+    transient       yes;
+    cellValueSourceCorrection on;
+
+    interpolationSchemes
+    {
+        rho.air         cell;
+        U.air           cellPoint;
+        mu.air          cell;
+        DUcDt           cellPoint;
+    }
+
+    averagingMethod basic;
+
+    integrationSchemes
+    {
+        U               Euler;
+    }
+
+    sourceTerms
+    {
+        schemes
+        {
+            U semiImplicit 1;
+        }
+    }
+}
+
+constantProperties
+{
+    rho0            8380;
+
+    alphaMax        0.9;
+}
+
+subModels
+{
+    particleForces
+    {
+         /*
+        WenYuDrag
+        {
+            alphac alpha.air;
+        }
+
+        pressureGradient
+        {
+            U U.air;
+        }    
+        */
+
+        nonSphereDrag
+        {
+            phi     0.8;   // shape factor (Haider-Levenspiel), phi=0.8 for satelliting particles
+        }
+        
+        gravity;
+
+       
+
+    }
+
+    injectionModels
+    {
+        /*
+            % matlab/octave calculation of flow rate
+            alpha=0.1
+            U=20
+            A=0.01^2
+            Q=U*A
+            d=650e-6
+            v=(4/3)*pi*(d/2)^3
+            n=1
+            rate=alpha*Q/(v*n)
+        */
+
+        model1
+        {
+            type            patchInjection;
+            parcelBasisType fixed;
+            patch           powderInlet;
+            U0              (0 0 0);   // Q=7.86e-5 m^3/s carrier gas, A=1353.6 mm^2
+            nParticle       1;
+            parcelsPerSecond 22083;         // mdot=8.333e-5 kg/s (5 g/min); scaled from 3 g/min (13250) by factor 5/3
+            sizeDistribution
+            {
+                type            RosinRammler;
+                RosinRammlerDistribution
+                {
+                    minValue        45e-6;   // 0.045 mm
+                    maxValue        150e-6;  // 0.150 mm
+                    lambda          96e-6;   // mean diameter 0.096 mm
+                    n               4.23;    // spread parameter
+                }
+            }
+            flowRateProfile constant 1;
+            massTotal       8.333e-4;        // mdot * duration = 8.333e-5 * 10 kg
+            SOI             0;
+            duration        10;
+        }
+
+        
+    }
+
+    dispersionModel none;
+
+    patchInteractionModel localInteraction;
+
+    localInteractionCoeffs
+    {
+        patches
+        (
+            "(frontAndBack|walls)"
+            {
+                type rebound;
+                e    1;
+                mu   0;
+            }
+            "(powderInlet|gasInlet)"
+            {
+                type rebound;
+                e    1;
+                mu   0;
+            }
+            outlet
+            {
+                type escape;
+//                type stick;
+            }
+        );
+    }
+
+    surfaceFilmModel none;
+
+    packingModel none;
+
+    collisionModel none;
+
+    dampingModel relaxation;
+
+    relaxationCoeffs
+    {
+        timeScaleModel
+        {
+            type nonEquilibrium;
+            alphaPacked 0.58;
+            e 0.9;
+        }
+    }
+
+    isotropyModel stochastic;
+
+    stochasticCoeffs
+    {
+        timeScaleModel
+        {
+            type isotropic;
+            alphaPacked 0.58;
+            e 0.9;
+        }
+    }
+
+    stochasticCollisionModel none;
+}
+
+cloudFunctions
+{}
+
+
+// ************************************************************************* //

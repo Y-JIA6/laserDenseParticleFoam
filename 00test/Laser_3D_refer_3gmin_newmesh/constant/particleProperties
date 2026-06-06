@@ -1,0 +1,41 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2506                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      particleProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Physical constants
+sigma       5.67e-8;    // Stefan-Boltzmann constant [W/(m^2·K^4)]
+T_amb       300.0;      // Ambient temperature [K]
+T_init      300.0;      // Initial particle temperature [K]
+
+// Material properties (Stellite 6 - Co-Cr alloy)
+alpha_laser 0.47;        // Laser absorptivity [-] (verify for actual laser wavelength)
+epsilon     0.0;        // Thermal emissivity [-] (verify for Stellite 6)
+cp          421.0;      // Specific heat capacity [J/(kg·K)]
+rhoP        8380.0;     // Particle density [kg/m^3]
+
+// Latent heat of fusion (enthalpy method)
+L_f         2.92e5;     // Latent heat of fusion [J/kg]  (Stellite 6)
+T_sol       1533.0;     // Solidus  temperature [K]      (Stellite 6)
+T_liq       1630.0;     // Liquidus temperature [K]      (Stellite 6)
+
+// Stellite 6 additional reference values (not directly used in current ODE):
+// k_particle  14.82;   // Thermal conductivity [W/(m·K)]
+
+// Gas thermal properties (Argon, for convective heat transfer)
+k_g         0.01580;    // Gas thermal conductivity [W/(m·K)]
+Pr_g        0.741;      // Gas Prandtl number [-] = mu*cp/k = 2.25e-5*520.6/0.01580
+
+// ************************************************************************* //

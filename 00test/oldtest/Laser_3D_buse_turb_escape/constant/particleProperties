@@ -1,0 +1,52 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      particleProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Physical constants
+sigma       5.67e-8;    // Stefan-Boltzmann constant [W/(m^2·K^4)]
+T_amb       300.0;      // Ambient temperature [K]
+
+// Material properties (Copper - adjusted for better heating)
+alpha_laser 0.4;        // Laser absorptivity (increased for visible heating)
+epsilon     0.3;        // Thermal emissivity (reduced to slow cooling)
+cp          385.0;      // Specific heat capacity [J/(kg·K)]
+rhoP        8960.0;     // Particle density [kg/m^3]
+
+// Gas thermal properties (for convective heat transfer)
+k_g         0.026;      // Gas thermal conductivity [W/(m·K)] (air at ~300K)
+Pr_g        0.71;       // Gas Prandtl number [-] (air at ~300K)
+
+// Alternative materials (uncomment to use):
+
+// Aluminum (1064nm laser)
+// alpha_laser 0.03;
+// epsilon     0.75;
+// cp          900.0;
+// rhoP        2700.0;
+
+// Steel (Stainless, 1064nm laser)
+// alpha_laser 0.25;
+// epsilon     0.60;
+// cp          500.0;
+// rhoP        7850.0;
+
+// Titanium (1064nm laser)
+// alpha_laser 0.40;
+// epsilon     0.70;
+// cp          523.0;
+// rhoP        4500.0;
+
+// ************************************************************************* //

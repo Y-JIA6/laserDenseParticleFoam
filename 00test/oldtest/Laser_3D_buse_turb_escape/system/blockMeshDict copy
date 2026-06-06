@@ -1,0 +1,815 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.001;
+
+vertices
+(
+    // Section 1: 0° (y -> 0, z = y_original) - indices 0-11
+    (27.25  -7.02  0)         //0
+    (0  -24.05  0)            //1
+    (0  -23.444  0)           //2
+    (26.45  -6.928  0)        //3
+    (26.45  -4.0  0)          //4C2
+    (0  -14.0  0)             //5
+    (0  -4.0  0)              //6C1
+    (27.25  -4.0  0)          //7C3
+    (27.25  -30  0)           //8
+    (50  -30  0)              //9
+    (50  -7.02  0)            //10
+    (50  -4.0  0)             //11C4
+
+    (0  0  0)             //center8
+    (26.45  0  0)          //center9
+    (27.25  0  0)          //center10
+    (50  0  0)             //15 center15
+
+
+    // Section 2: 45° rotation around x-axis - indices 16-27
+    (27.25  -4.964  -4.964)         //16 (from 0)
+    (0  -17.01  -17.01)            //17 (from 1)
+    (0  -16.58  -16.58)           //18 (from 2)
+    (26.45  -4.9  -4.9)        //19 (from 3)
+    (26.45  -4.0  -4.0)          //20 (from 4)
+    (0  -9.899  -9.899)             //21 (from 5)
+    (0  -4.0  -4.0)              //22 (from 6)
+    (27.25  -4.0  -4.0)          //23 (from 7)
+    (27.25  -21.213  -21.213)           //24 (from 8)
+    (50  -21.213  -21.213)              //25 (from 9)
+    (50  -4.964  -4.964)            //26 (from 10)
+    (50  -4.0  -4.0)             //27 (from 11)
+    
+    // Section 3: 90° rotation around x-axis - indices 28-39
+    (27.25  0  -7.02)         //28 (from 0)
+    (0  0  -24.05)            //29 (from 1)
+    (0  0  -23.444)           //30 (from 2)
+    (26.45  0  -6.928)        //31 (from 3)
+    (26.45  0  -4.0)          //32 (from 4)
+    (0  0  -14.0)             //33 (from 5)
+    (0  0  -4.0)              //34 (from 6)
+    (27.25  0  -4.0)          //35 (from 7)
+    (27.25  0  -30)           //36 (from 8)
+    (50  0  -30)              //37 (from 9)
+    (50  0  -7.02)            //38 (from 10)
+    (50  0  -4.0)             //39 (from 11)
+    
+    // Symmetric Section 1: 0° mirrored across XOZ plane (y negated) - indices 40-51
+    (27.25  7.02  0)          //40 (symmetric of 0)
+    (0  24.05  0)             //41 (symmetric of 1)
+    (0  23.444  0)            //42 (symmetric of 2)
+    (26.45  6.928  0)         //43 (symmetric of 3)
+    (26.45  4.0  0)           //44 (symmetric of 4)
+    (0  14.0  0)              //45 (symmetric of 5)
+    (0  4.0  0)               //46 (symmetric of 6)
+    (27.25  4.0  0)           //47 (symmetric of 7)
+    (27.25  30  0)            //48 (symmetric of 8)
+    (50  30  0)               //49 (symmetric of 9)
+    (50  7.02  0)             //50 (symmetric of 10)
+    (50  4.0  0)              //51 (symmetric of 11)
+    
+    // Symmetric Section 2: 45° mirrored across XOZ plane - indices 52-63
+    (27.25  4.964  -4.964)    //52 (symmetric of 16)
+    (0  17.01  -17.01)        //53 (symmetric of 17)
+    (0  16.58  -16.58)        //54 (symmetric of 18)
+    (26.45  4.9  -4.9)        //55 (symmetric of 19)
+    (26.45  4.0  -4.0)        //56 (symmetric of 20)
+    (0  9.899  -9.899)        //57 (symmetric of 21)
+    (0  4.0  -4.0)            //58 (symmetric of 22)
+    (27.25  4.0  -4.0)        //59 (symmetric of 23)
+    (27.25  21.213  -21.213)  //60 (symmetric of 24)
+    (50  21.213  -21.213)     //61 (symmetric of 25)
+    (50  4.964  -4.964)       //62 (symmetric of 26)
+    (50  4.0  -4.0)           //63 (symmetric of 27)
+    
+    // XOY Symmetry: z-coordinates negated - only z!=0 vertices (indices 64-87)
+    // z=0 vertices (0-15, 40-51) are shared, not duplicated
+    
+    // Section 2 mirrored (z-negation of 16-27): indices 64-75
+    (27.25  -4.964  4.964)    //64 (z-sym of 16)
+    (0  -17.01  17.01)        //65 (z-sym of 17)
+    (0  -16.58  16.58)        //66 (z-sym of 18)
+    (26.45  -4.9  4.9)        //67 (z-sym of 19)
+    (26.45  -4.0  4.0)        //68 (z-sym of 20)
+    (0  -9.899  9.899)        //69 (z-sym of 21)
+    (0  -4.0  4.0)            //70 (z-sym of 22)
+    (27.25  -4.0  4.0)        //71 (z-sym of 23)
+    (27.25  -21.213  21.213)  //72 (z-sym of 24)
+    (50  -21.213  21.213)     //73 (z-sym of 25)
+    (50  -4.964  4.964)       //74 (z-sym of 26)
+    (50  -4.0  4.0)           //75 (z-sym of 27)
+    
+    // Section 3 mirrored (z-negation of 28-39): indices 76-87
+    (27.25  0  7.02)          //76 (z-sym of 28)
+    (0  0  24.05)             //77 (z-sym of 29)
+    (0  0  23.444)            //78 (z-sym of 30)
+    (26.45  0  6.928)         //79 (z-sym of 31)
+    (26.45  0  4.0)           //80 (z-sym of 32)
+    (0  0  14.0)              //81 (z-sym of 33)
+    (0  0  4.0)               //82 (z-sym of 34)
+    (27.25  0  4.0)           //83 (z-sym of 35)
+    (27.25  0  30)            //84 (z-sym of 36)
+    (50  0  30)               //85 (z-sym of 37)
+    (50  0  7.02)             //86 (z-sym of 38)
+    (50  0  4.0)              //87 (z-sym of 39)
+    
+    // Symmetric Section 2 mirrored (z-negation of 52-63): indices 88-99
+    (27.25  4.964  4.964)     //88 (z-sym of 52)
+    (0  17.01  17.01)         //89 (z-sym of 53)
+    (0  16.58  16.58)         //90 (z-sym of 54)
+    (26.45  4.9  4.9)         //91 (z-sym of 55)
+    (26.45  4.0  4.0)         //92 (z-sym of 56)
+    (0  9.899  9.899)         //93 (z-sym of 57)
+    (0  4.0  4.0)             //94 (z-sym of 58)
+    (27.25  4.0  4.0)         //95 (z-sym of 59)
+    (27.25  21.213  21.213)   //96 (z-sym of 60)
+    (50  21.213  21.213)      //97 (z-sym of 61)
+    (50  4.964  4.964)        //98 (z-sym of 62)
+    (50  4.0  4.0)            //99 (z-sym of 63)
+);
+
+edges
+(
+    // Arc edges from Section 1 (0°) to Section 2 (45°) around X axis
+    // Midpoint at 22.5° rotation
+    
+    // x = 27.25
+    arc 0 16 (27.25 -6.484 -2.686)      // 0 -> 16
+    arc 8 24 (27.25 -27.716 -11.481)    // 8 -> 24
+    
+    // x = 26.45
+    arc 3 19 (26.45 -6.399 -2.651)      // 3 -> 19
+    
+    // x = 50
+    arc 10 26 (50 -6.484 -2.686)        // 10 -> 26
+    arc 9 25 (50 -27.716 -11.481)       // 9 -> 25
+    
+    // x = 0
+    arc 1 17 (0 -22.214 -9.202)         // 1 -> 17
+    arc 2 18 (0 -21.653 -8.970)         // 2 -> 18
+    arc 5 21 (0 -12.935 -5.357)         // 5 -> 21
+    
+    // Arc edges from Section 2 (45°) to Section 3 (90°) around X axis
+    // Midpoint at 67.5° rotation
+    
+    // x = 27.25
+    arc 16 28 (27.25 -2.686 -6.486)     // 16 -> 28
+    arc 24 36 (27.25 -11.481 -27.716)   // 24 -> 36
+    
+    // x = 26.45
+    arc 19 31 (26.45 -2.651 -6.401)     // 19 -> 31
+    
+    // x = 50
+    arc 26 38 (50 -2.686 -6.486)        // 26 -> 38
+    arc 25 37 (50 -11.481 -27.716)      // 25 -> 37
+    
+    // x = 0
+    arc 17 29 (0 -9.204 -22.219)        // 17 -> 29
+    arc 18 30 (0 -8.972 -21.659)        // 18 -> 30
+    arc 21 33 (0 -5.358 -12.934)        // 21 -> 33
+
+
+    // Symmetric arc edges from Section 1 (0°) to Section 2 (45°) - mirrored
+    // Midpoint at 22.5° rotation (y negated)
+    
+    // x = 27.25
+    arc 40 52 (27.25 6.484 -2.686)      // 40 -> 52 (symmetric of 0->16)
+    arc 48 60 (27.25 27.716 -11.481)    // 48 -> 60 (symmetric of 8->24)
+    
+    // x = 26.45
+    arc 43 55 (26.45 6.399 -2.651)      // 43 -> 55 (symmetric of 3->19)
+    
+    // x = 50
+    arc 50 62 (50 6.484 -2.686)         // 50 -> 62 (symmetric of 10->26)
+    arc 49 61 (50 27.716 -11.481)       // 49 -> 61 (symmetric of 9->25)
+    
+    // x = 0
+    arc 41 53 (0 22.214 -9.202)         // 41 -> 53 (symmetric of 1->17)
+    arc 42 54 (0 21.653 -8.970)         // 42 -> 54 (symmetric of 2->18)
+    arc 45 57 (0 12.935 -5.357)         // 45 -> 57 (symmetric of 5->21)
+
+
+    // Symmetric arc edges from Section 2 (45°) to Section 3 (90°) - mirrored
+    // Midpoint at 67.5° rotation (y negated)
+    
+    // x = 27.25
+    arc 52 28 (27.25 2.686 -6.486)      // 52 -> 28 (symmetric of 16->28)
+    arc 60 36 (27.25 11.481 -27.716)    // 60 -> 36 (symmetric of 24->36)
+    
+    // x = 26.45
+    arc 55 31 (26.45 2.651 -6.401)      // 55 -> 31 (symmetric of 19->31)
+    
+    // x = 50
+    arc 62 38 (50 2.686 -6.486)         // 62 -> 38 (symmetric of 26->38)
+    arc 61 37 (50 11.481 -27.716)       // 61 -> 37 (symmetric of 25->37)
+    
+    // x = 0
+    arc 53 29 (0 9.204 -22.219)         // 53 -> 29 (symmetric of 17->29)
+    arc 54 30 (0 8.972 -21.659)         // 54 -> 30 (symmetric of 18->30)
+    arc 57 33 (0 5.358 -12.934)         // 57 -> 33 (symmetric of 21->33) 
+
+
+    // XOY Symmetric arc edges: z-coordinates negated
+    // Section 1 (z=0) to Section 2_z-sym (64-75) - reuse z=0 vertices 0-11
+    
+    // x = 27.25
+    arc 0 64 (27.25 -6.484 2.686)       // 0 -> 64 (z-sym of 0->16)
+    arc 8 72 (27.25 -27.716 11.481)     // 8 -> 72 (z-sym of 8->24)
+    
+    // x = 26.45
+    arc 3 67 (26.45 -6.399 2.651)       // 3 -> 67 (z-sym of 3->19)
+    
+    // x = 50
+    arc 10 74 (50 -6.484 2.686)         // 10 -> 74 (z-sym of 10->26)
+    arc 9 73 (50 -27.716 11.481)        // 9 -> 73 (z-sym of 9->25)
+    
+    // x = 0
+    arc 1 65 (0 -22.214 9.202)          // 1 -> 65 (z-sym of 1->17)
+    arc 2 66 (0 -21.653 8.970)          // 2 -> 66 (z-sym of 2->18)
+    arc 5 69 (0 -12.935 5.357)          // 5 -> 69 (z-sym of 5->21)
+    
+    // Section 2_z-sym (64-75) to Section 3_z-sym (76-87)
+    
+    // x = 27.25
+    arc 64 76 (27.25 -2.686 6.486)      // 64 -> 76 (z-sym of 16->28)
+    arc 72 84 (27.25 -11.481 27.716)    // 72 -> 84 (z-sym of 24->36)
+    
+    // x = 26.45
+    arc 67 79 (26.45 -2.651 6.401)      // 67 -> 79 (z-sym of 19->31)
+    
+    // x = 50
+    arc 74 86 (50 -2.686 6.486)         // 74 -> 86 (z-sym of 26->38)
+    arc 73 85 (50 -11.481 27.716)       // 73 -> 85 (z-sym of 25->37)
+    
+    // x = 0
+    arc 65 77 (0 -9.204 22.219)         // 65 -> 77 (z-sym of 17->29)
+    arc 66 78 (0 -8.972 21.659)         // 66 -> 78 (z-sym of 18->30)
+    arc 69 81 (0 -5.358 12.934)         // 69 -> 81 (z-sym of 21->33)
+    
+    // Symmetric Section 1 (z=0) to Symmetric Section 2_z-sym (88-99) - reuse z=0 vertices 40-51
+    
+    // x = 27.25
+    arc 40 88 (27.25 6.484 2.686)       // 40 -> 88 (z-sym of 40->52)
+    arc 48 96 (27.25 27.716 11.481)     // 48 -> 96 (z-sym of 48->60)
+    
+    // x = 26.45
+    arc 43 91 (26.45 6.399 2.651)       // 43 -> 91 (z-sym of 43->55)
+    
+    // x = 50
+    arc 50 98 (50 6.484 2.686)          // 50 -> 98 (z-sym of 50->62)
+    arc 49 97 (50 27.716 11.481)        // 49 -> 97 (z-sym of 49->61)
+    
+    // x = 0
+    arc 41 89 (0 22.214 9.202)          // 41 -> 89 (z-sym of 41->53)
+    arc 42 90 (0 21.653 8.970)          // 42 -> 90 (z-sym of 42->54)
+    arc 45 93 (0 12.935 5.357)          // 45 -> 93 (z-sym of 45->57)
+    
+    // Symmetric Section 2_z-sym (88-99) to Section 3_z-sym (76-87)
+    
+    // x = 27.25
+    arc 88 76 (27.25 2.686 6.486)       // 88 -> 76 (z-sym of 52->28)
+    arc 96 84 (27.25 11.481 27.716)     // 96 -> 84 (z-sym of 60->36)
+    
+    // x = 26.45
+    arc 91 79 (26.45 2.651 6.401)       // 91 -> 79 (z-sym of 55->31)
+    
+    // x = 50
+    arc 98 86 (50 2.686 6.486)          // 98 -> 86 (z-sym of 62->38)
+    arc 97 85 (50 11.481 27.716)        // 97 -> 85 (z-sym of 61->37)
+    
+    // x = 0
+    arc 89 77 (0 9.204 22.219)          // 89 -> 77 (z-sym of 53->29)
+    arc 90 78 (0 8.972 21.659)          // 90 -> 78 (z-sym of 54->30)
+    arc 93 81 (0 5.358 12.934)          // 93 -> 81 (z-sym of 57->33)
+);
+
+blocks
+(
+    // Block 1: center8/6C1/22/34 -> 4C2/center9/20/32 cuboïde top gasInlet connect to Block 2
+    hex (12 6 22 34 13 4 20 32) (10 10 10) simpleGrading (1 1 0.1)
+    
+    // Block 2: 4C2/center9/20/32 -> 7C3/center10/23/35 cuboïde medium gasInlet connect to Block 1/3/6
+    hex (13 4 20 32 14 7 23 35) (10 10 6) simpleGrading (1 1 1)
+    
+    // Block 3: 7C3/center10/23/35 -> 11C4/center15/27/39 cuboïde bottom gasInlet connect to Block 2/8
+    hex (14 7 23 35 15 11 27 39) (10 10 25) simpleGrading (1 1 1)
+    
+    // Block 4: 6C1/4C2/3/5 -> 22/20/19/21 (0° to 45°) cylindre gasInlet connect to Block 2/6
+    hex (6 4 3 5 22 20 19 21) (10 10 10) simpleGrading (0.1 1 1)
+    
+    // Block 5: 3/0/1/2 -> 19/16/17/18 (0° to 45°) PowderInlet connect to Block 6
+    hex (3 0 1 2 19 16 17 18) (6 30 10) simpleGrading (1 1 1)
+    
+    // Block 6: 3/0/7/4 -> 19/16/23/20 (0° to 45°) cylindre between PowderInlet and around connect to Block 1/2/4/8
+    hex (3 4 7 0 19 20 23 16) (10 6 10) simpleGrading (1 1 1)
+    
+    // Block 7: 0/8/9/10 -> 16/24/25/26 (0° to 45°) cylindre external connect to Block 8
+    hex (8 0 10 9 24 16 26 25) (10 25 10) simpleGrading (0.1 1 1)
+    
+    // Block 8: 0/7/11/10 -> 16/23/27/26 (0° to 45°) cylindre intermediaire connect to Block 3/6/7
+    hex (0 7 11 10 16 23 27 26) (10 25 10) simpleGrading (1 1 1)
+
+    // Block 9: 22/20/19/21 -> 34/32/31/33 (45° to 90°) cylindre gasInlet
+    hex (22 20 19 21 34 32 31 33) (10 10 10) simpleGrading (0.1 1 1)
+    
+    // Block 10: 19/16/17/18 -> 31/28/29/30 (45° to 90°) PowderInlet
+    hex (19 16 17 18 31 28 29 30) (6 30 10) simpleGrading (1 1 1)
+    
+    // Block 11: 19/20/23/16 -> 31/32/35/28 (45° to 90°) cylindre between PowderInlet and around
+    hex (19 20 23 16 31 32 35 28) (10 6 10) simpleGrading (1 1 1)
+    
+    // Block 12: 24/16/26/25 -> 36/28/38/37 (45° to 90°) cylindre external
+    hex (24 16 26 25 36 28 38 37) (10 25 10) simpleGrading (0.1 1 1)
+    
+    // Block 13: 16/23/27/26 -> 28/35/39/38 (45° to 90°) cylindre intermediaire
+    hex (16 23 27 26 28 35 39 38) (10 25 10) simpleGrading (1 1 1)
+
+
+
+
+    // Symmetric Blocks (mirrored across XOZ plane)
+    // Block 14: Symmetric of Block 1 - (12 6 22 34 13 4 20 32) -> (12 46 58 34 13 44 56 32)
+    hex (34 58 46 12 32 56 44 13) (10 10 10) simpleGrading (1 1 0.1)
+    
+    // Block 15: Symmetric of Block 2 - (13 4 20 32 14 7 23 35) -> (13 44 56 32 14 47 59 35)
+    hex (32 56 44 13 35 59 47 14) (10 10 6) simpleGrading (1 1 1)
+    
+    // Block 16: Symmetric of Block 3 - (14 7 23 35 15 11 27 39) -> (14 47 59 35 15 51 63 39)
+    hex (35 59 47 14 39 63 51 15) (10 10 25) simpleGrading (1 1 1)
+    
+    // Block 17: Symmetric of Block 4 - (6 4 3 5 22 20 19 21) -> (46 44 43 45 58 56 55 57)
+    hex (45 43 44 46 57 55 56 58) (10 10 10) simpleGrading (0.1 1 1)
+    
+    // Block 18: Symmetric of Block 5 - (3 0 1 2 19 16 17 18) -> (43 40 41 42 55 52 53 54)
+    hex (42 41 40 43 54 53 52 55) (6 30 10) simpleGrading (1 1 1)
+    
+    // Block 19: Symmetric of Block 6 - (3 4 7 0 19 20 23 16) -> (43 44 47 40 55 56 59 52)
+    hex (40 47 44 43 52 59 56 55) (10 6 10) simpleGrading (1 1 1)
+    
+    // Block 20: Symmetric of Block 7 - (8 0 10 9 24 16 26 25) -> (48 40 50 49 60 52 62 61)
+    hex (49 50 40 48 61 62 52 60) (10 25 10) simpleGrading (0.1 1 1)
+    
+    // Block 21: Symmetric of Block 8 - (0 7 11 10 16 23 27 26) -> (40 47 51 50 52 59 63 62)
+    hex (50 51 47 40 62 63 59 52) (10 25 10) simpleGrading (1 1 1)
+    
+    // Block 22: Symmetric of Block 9 - (22 20 19 21 34 32 31 33) -> (58 56 55 57 34 32 31 33)
+    hex (57 55 56 58 33 31 32 34) (10 10 10) simpleGrading (0.1 1 1)
+    
+    // Block 23: Symmetric of Block 10 - (19 16 17 18 31 28 29 30) -> (55 52 53 54 31 28 29 30)
+    hex (54 53 52 55 30 29 28 31) (6 30 10) simpleGrading (1 1 1)
+    
+    // Block 24: Symmetric of Block 11 - (19 20 23 16 31 32 35 28) -> (55 56 59 52 31 32 35 28)
+    hex (52 59 56 55 28 35 32 31) (10 6 10) simpleGrading (1 1 1)
+    
+    // Block 25: Symmetric of Block 12 - (24 16 26 25 36 28 38 37) -> (60 52 62 61 36 28 38 37)
+    hex (61 62 52 60 37 38 28 36) (10 25 10) simpleGrading (0.1 1 1)
+    
+    // Block 26: Symmetric of Block 13 - (16 23 27 26 28 35 39 38) -> (52 59 63 62 28 35 39 38)
+    hex (62 63 59 52 38 39 35 28) (10 25 10) simpleGrading (1 1 1) 
+
+
+
+   // XOY Symmetric Blocks (z-coordinates negated) - Blocks 27-52
+    // Transformation pattern: (v0 v1 v2 v3 v4 v5 v6 v7) -> (v3' v2' v1' v0' v7' v6' v5' v4')
+    // where v' is the z-symmetric vertex (z=0 vertices stay same, others map to 64-99)
+    
+    // Block 27: XOY-symmetric of Block 1: (12 6 22 34 13 4 20 32)
+    // Mapping: 12->12, 6->6, 22->70, 34->82, 13->13, 4->4, 20->68, 32->80
+    // Apply transformation: (82 70 6 12 80 68 4 13)
+    hex (82 70 6 12 80 68 4 13) (10 10 10) simpleGrading (1 1 0.1)
+    
+    // Block 28: XOY-symmetric of Block 2: (13 4 20 32 14 7 23 35)
+    // Mapping: 13->13, 4->4, 20->68, 32->80, 14->14, 7->7, 23->71, 35->83
+    // Apply transformation: (80 68 4 13 83 71 7 14)
+    hex (80 68 4 13 83 71 7 14) (10 10 6) simpleGrading (1 1 1)
+    
+    // Block 29: XOY-symmetric of Block 3: (14 7 23 35 15 11 27 39)
+    // Mapping: 14->14, 7->7, 23->71, 35->83, 15->15, 11->11, 27->75, 39->87
+    // Apply transformation: (83 71 7 14 87 75 11 15)
+    hex (83 71 7 14 87 75 11 15) (10 10 25) simpleGrading (1 1 1)
+    
+    // Block 30: XOY-symmetric of Block 4: (6 4 3 5 22 20 19 21)
+    // Mapping: 6->6, 4->4, 3->3, 5->5, 22->70, 20->68, 19->67, 21->69
+    // Apply transformation: (5 3 4 6 69 67 68 70)
+    hex (5 3 4 6 69 67 68 70) (10 10 10) simpleGrading (0.1 1 1)
+    
+    // Block 31: XOY-symmetric of Block 5: (3 0 1 2 19 16 17 18)
+    // Mapping: 3->3, 0->0, 1->1, 2->2, 19->67, 16->64, 17->65, 18->66
+    // Apply transformation: (2 1 0 3 66 65 64 67)
+    hex (2 1 0 3 66 65 64 67) (6 30 10) simpleGrading (1 1 1)
+    
+    // Block 32: XOY-symmetric of Block 6: (3 4 7 0 19 20 23 16)
+    // Mapping: 3->3, 4->4, 7->7, 0->0, 19->67, 20->68, 23->71, 16->64
+    // Apply transformation: (0 7 4 3 64 71 68 67)
+    hex (0 7 4 3 64 71 68 67) (10 6 10) simpleGrading (1 1 1)
+    
+    // Block 33: XOY-symmetric of Block 7: (8 0 10 9 24 16 26 25)
+    // Mapping: 8->8, 0->0, 10->10, 9->9, 24->72, 16->64, 26->74, 25->73
+    // Apply transformation: (9 10 0 8 73 74 64 72)
+    hex (9 10 0 8 73 74 64 72) (10 25 10) simpleGrading (0.1 1 1)
+    
+    // Block 34: XOY-symmetric of Block 8: (0 7 11 10 16 23 27 26)
+    // Mapping: 0->0, 7->7, 11->11, 10->10, 16->64, 23->71, 27->75, 26->74
+    // Apply transformation: (10 11 7 0 74 75 71 64)
+    hex (10 11 7 0 74 75 71 64) (10 25 10) simpleGrading (1 1 1)
+    
+    // Block 35: XOY-symmetric of Block 9: (22 20 19 21 34 32 31 33)
+    // Mapping: 22->70, 20->68, 19->67, 21->69, 34->82, 32->80, 31->79, 33->81
+    // Apply transformation: (69 67 68 70 81 79 80 82)
+    hex (69 67 68 70 81 79 80 82) (10 10 10) simpleGrading (0.1 1 1)
+    
+    // Block 36: XOY-symmetric of Block 10: (19 16 17 18 31 28 29 30)
+    // Mapping: 19->67, 16->64, 17->65, 18->66, 31->79, 28->76, 29->77, 30->78
+    // Apply transformation: (66 65 64 67 78 77 76 79)
+    hex (66 65 64 67 78 77 76 79) (6 30 10) simpleGrading (1 1 1)
+    
+    // Block 37: XOY-symmetric of Block 11: (19 20 23 16 31 32 35 28)
+    // Mapping: 19->67, 20->68, 23->71, 16->64, 31->79, 32->80, 35->83, 28->76
+    // Apply transformation: (64 71 68 67 76 83 80 79)
+    hex (64 71 68 67 76 83 80 79) (10 6 10) simpleGrading (1 1 1)
+    
+    // Block 38: XOY-symmetric of Block 12: (24 16 26 25 36 28 38 37)
+    // Mapping: 24->72, 16->64, 26->74, 25->73, 36->84, 28->76, 38->86, 37->85
+    // Apply transformation: (73 74 64 72 85 86 76 84)
+    hex (73 74 64 72 85 86 76 84) (10 25 10) simpleGrading (0.1 1 1)
+    
+    // Block 39: XOY-symmetric of Block 13: (16 23 27 26 28 35 39 38)
+    // Mapping: 16->64, 23->71, 27->75, 26->74, 28->76, 35->83, 39->87, 38->86
+    // Apply transformation: (74 75 71 64 86 87 83 76)
+    hex (74 75 71 64 86 87 83 76) (10 25 10) simpleGrading (1 1 1)
+    
+    // Block 40: XOY-symmetric of Block 14: (34 58 46 12 32 56 44 13)
+    // Mapping: 34->82, 58->94, 46->46, 12->12, 32->80, 56->92, 44->44, 13->13
+    // Apply transformation: (12 46 94 82 13 44 92 80)
+    hex (12 46 94 82 13 44 92 80) (10 10 10) simpleGrading (1 1 0.1)
+    
+    // Block 41: XOY-symmetric of Block 15: (32 56 44 13 35 59 47 14)
+    // Mapping: 32->80, 56->92, 44->44, 13->13, 35->83, 59->95, 47->47, 14->14
+    // Apply transformation: (13 44 92 80 14 47 95 83)
+    hex (13 44 92 80 14 47 95 83) (10 10 6) simpleGrading (1 1 1)
+    
+    // Block 42: XOY-symmetric of Block 16: (35 59 47 14 39 63 51 15)
+    // Mapping: 35->83, 59->95, 47->47, 14->14, 39->87, 63->99, 51->51, 15->15
+    // Apply transformation: (14 47 95 83 15 51 99 87)
+    hex (14 47 95 83 15 51 99 87) (10 10 25) simpleGrading (1 1 1)
+    
+    // Block 43: XOY-symmetric of Block 17: (45 43 44 46 57 55 56 58)
+    // Mapping: 45->45, 43->43, 44->44, 46->46, 57->93, 55->91, 56->92, 58->94
+    // Apply transformation: (46 44 43 45 94 92 91 93)
+    hex (46 44 43 45 94 92 91 93) (10 10 10) simpleGrading (0.1 1 1)
+    
+    // Block 44: XOY-symmetric of Block 18: (42 41 40 43 54 53 52 55)
+    // Mapping: 42->42, 41->41, 40->40, 43->43, 54->90, 53->89, 52->88, 55->91
+    // Apply transformation: (43 40 41 42 91 88 89 90)
+    hex (43 40 41 42 91 88 89 90) (6 30 10) simpleGrading (1 1 1)
+    
+    // Block 45: XOY-symmetric of Block 19: (40 47 44 43 52 59 56 55)
+    // Mapping: 40->40, 47->47, 44->44, 43->43, 52->88, 59->95, 56->92, 55->91
+    // Apply transformation: (43 44 47 40 91 92 95 88)
+    hex (43 44 47 40 91 92 95 88) (10 6 10) simpleGrading (1 1 1)
+    
+    // Block 46: XOY-symmetric of Block 20: (49 50 40 48 61 62 52 60)
+    // Mapping: 49->49, 50->50, 40->40, 48->48, 61->97, 62->98, 52->88, 60->96
+    // Apply transformation: (48 40 50 49 96 88 98 97)
+    hex (48 40 50 49 96 88 98 97) (10 25 10) simpleGrading (0.1 1 1)
+    
+    // Block 47: XOY-symmetric of Block 21: (50 51 47 40 62 63 59 52)
+    // Mapping: 50->50, 51->51, 47->47, 40->40, 62->98, 63->99, 59->95, 52->88
+    // Apply transformation: (40 47 51 50 88 95 99 98)
+    hex (40 47 51 50 88 95 99 98) (10 25 10) simpleGrading (1 1 1)
+    
+    // Block 48: XOY-symmetric of Block 22: (57 55 56 58 33 31 32 34)
+    // Mapping: 57->93, 55->91, 56->92, 58->94, 33->81, 31->79, 32->80, 34->82
+    // Apply transformation: (94 92 91 93 82 80 79 81)
+    hex (94 92 91 93 82 80 79 81) (10 10 10) simpleGrading (0.1 1 1)
+    
+    // Block 49: XOY-symmetric of Block 23: (54 53 52 55 30 29 28 31)
+    // Mapping: 54->90, 53->89, 52->88, 55->91, 30->78, 29->77, 28->76, 31->79
+    // Apply transformation: (91 88 89 90 79 76 77 78)
+    hex (91 88 89 90 79 76 77 78) (6 30 10) simpleGrading (1 1 1)
+    
+    // Block 50: XOY-symmetric of Block 24: (52 59 56 55 28 35 32 31)
+    // Mapping: 52->88, 59->95, 56->92, 55->91, 28->76, 35->83, 32->80, 31->79
+    // Apply transformation: (91 92 95 88 79 80 83 76)
+    hex (91 92 95 88 79 80 83 76) (10 6 10) simpleGrading (1 1 1)
+    
+    // Block 51: XOY-symmetric of Block 25: (61 62 52 60 37 38 28 36)
+    // Mapping: 61->97, 62->98, 52->88, 60->96, 37->85, 38->86, 28->76, 36->84
+    // Apply transformation: (96 88 98 97 84 76 86 85)
+    hex (96 88 98 97 84 76 86 85) (10 25 10) simpleGrading (0.1 1 1)
+    
+    // Block 52: XOY-symmetric of Block 26: (62 63 59 52 38 39 35 28)
+    // Mapping: 62->98, 63->99, 59->95, 52->88, 38->86, 39->87, 35->83, 28->76
+    // Apply transformation: (88 95 99 98 76 83 87 86)
+    hex (88 95 99 98 76 83 87 86) (10 25 10) simpleGrading (1 1 1) 
+);
+
+
+boundary
+(
+    walls
+    {
+        type wall;
+        faces
+        (
+            // Section 1 to Section 2 (0° to 45°)
+            // Face 1: points 5/3 and their Section 2 rotations (21/19)
+            (5 3 19 21)
+            
+            // Face 2: points 3/2 and their Section 2 rotations (19/18)
+            (3 2 18 19)
+            
+            // Face 3: points 0/1 and their Section 2 rotations (16/17)
+            (0 1 17 16)
+            
+            // Section 2 to Section 3 (45° to 90°)
+            // Face 4: points 21/19 and their Section 3 rotations (33/31)
+            (21 19 31 33)
+            
+            // Face 5: points 19/18 and their Section 3 rotations (31/30)
+            (19 18 30 31)
+            
+            // Face 6: points 16/17 and their Section 3 rotations (28/29)
+            (16 17 29 28)
+            
+            // Symmetric walls (mirrored across XOZ plane)
+            // Face 7: points 45/43 and their Section 2 rotations (57/55)
+            (45 43 55 57)
+            
+            // Face 8: points 43/42 and their Section 2 rotations (55/54)
+            (43 42 54 55)
+            
+            // Face 9: points 40/41 and their Section 2 rotations (52/53)
+            (40 41 53 52)
+            
+            // Face 10: points 57/55 and their Section 3 rotations (33/31)
+            (57 55 31 33)
+            
+            // Face 11: points 55/54 and their Section 3 rotations (31/30)
+            (55 54 30 31)
+            
+            // Face 12: points 52/53 and their Section 3 rotations (28/29)
+            (52 53 29 28)
+            
+            // XOY Symmetric walls (z-negated)
+            // Section 1 (z=0) to Section 2_z-sym (64-75)
+            // Face 13: points 5/3 and their z-sym rotations (69/67)
+            (5 3 67 69)
+            
+            // Face 14: points 3/2 and their z-sym rotations (67/66)
+            (3 2 66 67)
+            
+            // Face 15: points 0/1 and their z-sym rotations (64/65)
+            (0 1 65 64)
+            
+            // Section 2_z-sym (64-75) to Section 3_z-sym (76-87)
+            // Face 16: points 69/67 and their Section 3_z-sym rotations (81/79)
+            (69 67 79 81)
+            
+            // Face 17: points 67/66 and their Section 3_z-sym rotations (79/78)
+            (67 66 78 79)
+            
+            // Face 18: points 64/65 and their Section 3_z-sym rotations (76/77)
+            (64 65 77 76)
+            
+            // Symmetric Section 1 (z=0) to Symmetric Section 2_z-sym (88-99)
+            // Face 19: points 45/43 and their z-sym rotations (93/91)
+            (45 43 91 93)
+            
+            // Face 20: points 43/42 and their z-sym rotations (91/90)
+            (43 42 90 91)
+            
+            // Face 21: points 40/41 and their z-sym rotations (88/89)
+            (40 41 89 88)
+            
+            // Face 22: points 93/91 and their Section 3_z-sym rotations (81/79)
+            (93 91 79 81)
+            
+            // Face 23: points 91/90 and their Section 3_z-sym rotations (79/78)
+            (91 90 78 79)
+            
+            // Face 24: points 88/89 and their Section 3_z-sym rotations (76/77)
+            (88 89 77 76)
+            
+        );
+    }
+
+    powderInlet
+    {
+        type patch;
+        faces
+        (
+            // Face 1: points 1/2 and their Section 2 rotations (17/18)
+            (1 2 18 17)
+            
+            // Face 2: points 17/18 and their Section 3 rotations (29/30)
+            (17 18 30 29)
+            
+            // Symmetric faces
+            // Face 3: points 41/42 and their Section 2 rotations (53/54)
+            (41 42 54 53)
+            
+            // Face 4: points 53/54 and their Section 3 rotations (29/30)
+            (53 54 30 29)
+            
+            // XOY Symmetric powderInlet faces (z-negated)
+            // Face 5: points 1/2 and their z-sym rotations (65/66)
+            (1 2 66 65)
+            
+            // Face 6: points 65/66 and their Section 3_z-sym rotations (77/78)
+            (65 66 78 77)
+            
+            // Face 7: points 41/42 and their z-sym rotations (89/90)
+            (41 42 90 89)
+            
+            // Face 8: points 89/90 and their Section 3_z-sym rotations (77/78)
+            (89 90 78 77)
+            
+        );
+    }
+
+    gasInlet
+    {
+        type patch;
+        faces
+        (
+            // Face 1: points 5/6 and their Section 2 rotations (21/22)
+            (5 6 22 21)
+            
+            // Face 2: points 6/12/34/22
+            (6 12 34 22)
+            
+            // Face 3: points 21/22 and their Section 3 rotations (33/34)
+            (21 22 34 33)
+            
+            // Symmetric faces
+            // Face 4: points 45/46 and their Section 2 rotations (57/58)
+            (45 46 58 57)
+            
+            // Face 5: points 46/12/34/58
+            (46 12 34 58)
+            
+            // Face 6: points 57/58 and their Section 3 rotations (33/34)
+            (57 58 34 33)
+            
+            // XOY Symmetric gasInlet faces (z-negated)
+            // Face 7: points 5/6 and their z-sym rotations (69/70)
+            (5 6 70 69)
+            
+            // Face 8: points 6/12/82/70 (z-sym vertices: 6->6, 12->12, 34->82, 22->70)
+            (6 12 82 70)
+            
+            // Face 9: points 69/70 and their Section 3_z-sym rotations (81/82)
+            (69 70 82 81)
+            
+            // Face 10: points 45/46 and their z-sym rotations (93/94)
+            (45 46 94 93)
+            
+            // Face 11: points 46/12/82/94
+            (46 12 82 94)
+            
+            // Face 12: points 93/94 and their Section 3_z-sym rotations (81/82)
+            (93 94 82 81)
+            
+        );
+    }
+
+    outlet
+    {
+        type patch;
+        faces
+        (
+            // Face 1: points 15/11/27/39 (not rotated)
+            (15 11 27 39)
+            
+            // Face 1b: Symmetric face 15/51/63/39
+            (15 51 63 39)
+            
+            // Section 1 to Section 2 (0° to 45°)
+            // Face 2: points 0/8 and their Section 2 rotations (16/24)
+            (0 8 24 16)
+            
+            // Face 3: points 8/9 and their Section 2 rotations (24/25)
+            (8 9 25 24)
+            
+            // Face 4: points 9/10 and their Section 2 rotations (25/26)
+            (9 10 26 25)
+            
+            // Face 5: points 10/11 and their Section 2 rotations (26/27)
+            (10 11 27 26)
+            
+            // Section 2 to Section 3 (45° to 90°)
+            // Face 6: points 16/24 and their Section 3 rotations (28/36)
+            (16 24 36 28)
+            
+            // Face 7: points 24/25 and their Section 3 rotations (36/37)
+            (24 25 37 36)
+            
+            // Face 8: points 25/26 and their Section 3 rotations (37/38)
+            (25 26 38 37)
+            
+            // Face 9: points 26/27 and their Section 3 rotations (38/39)
+            (26 27 39 38)
+            
+            // Symmetric Section 1 to Section 2 (0° to 45°)
+            // Face 10: points 40/48 and their Section 2 rotations (52/60)
+            (40 48 60 52)
+            
+            // Face 11: points 48/49 and their Section 2 rotations (60/61)
+            (48 49 61 60)
+            
+            // Face 12: points 49/50 and their Section 2 rotations (61/62)
+            (49 50 62 61)
+            
+            // Face 13: points 50/51 and their Section 2 rotations (62/63)
+            (50 51 63 62)
+            
+            // Symmetric Section 2 to Section 3 (45° to 90°)
+            // Face 14: points 52/60 and their Section 3 rotations (28/36)
+            (52 60 36 28)
+            
+            // Face 15: points 60/61 and their Section 3 rotations (36/37)
+            (60 61 37 36)
+            
+            // Face 16: points 61/62 and their Section 3 rotations (37/38)
+            (61 62 38 37)
+            
+            // Face 17: points 62/63 and their Section 3 rotations (38/39)
+            (62 63 39 38)
+            
+            // XOY Symmetric outlet faces (z-negated)
+            // Face 18: points 15/11/75/87 (z-sym: 27->75, 39->87)
+            (15 11 75 87)
+            
+            // Face 19: Symmetric face 15/51/99/87 (z-sym: 63->99, 39->87)
+            (15 51 99 87)
+            
+            // Section 1 (z=0) to Section 2_z-sym (64-75)
+            // Face 20: points 0/8 and their z-sym rotations (64/72)
+            (0 8 72 64)
+            
+            // Face 21: points 8/9 and their z-sym rotations (72/73)
+            (8 9 73 72)
+            
+            // Face 22: points 9/10 and their z-sym rotations (73/74)
+            (9 10 74 73)
+            
+            // Face 23: points 10/11 and their z-sym rotations (74/75)
+            (10 11 75 74)
+            
+            // Section 2_z-sym (64-75) to Section 3_z-sym (76-87)
+            // Face 24: points 64/72 and their Section 3_z-sym rotations (76/84)
+            (64 72 84 76)
+            
+            // Face 25: points 72/73 and their Section 3_z-sym rotations (84/85)
+            (72 73 85 84)
+            
+            // Face 26: points 73/74 and their Section 3_z-sym rotations (85/86)
+            (73 74 86 85)
+            
+            // Face 27: points 74/75 and their Section 3_z-sym rotations (86/87)
+            (74 75 87 86)
+            
+            // Symmetric Section 1 (z=0) to Symmetric Section 2_z-sym (88-99)
+            // Face 28: points 40/48 and their z-sym rotations (88/96)
+            (40 48 96 88)
+            
+            // Face 29: points 48/49 and their z-sym rotations (96/97)
+            (48 49 97 96)
+            
+            // Face 30: points 49/50 and their z-sym rotations (97/98)
+            (49 50 98 97)
+            
+            // Face 31: points 50/51 and their z-sym rotations (98/99)
+            (50 51 99 98)
+            
+            // Symmetric Section 2_z-sym (88-99) to Section 3_z-sym (76-87)
+            // Face 32: points 88/96 and their Section 3_z-sym rotations (76/84)
+            (88 96 84 76)
+            
+            // Face 33: points 96/97 and their Section 3_z-sym rotations (84/85)
+            (96 97 85 84)
+            
+            // Face 34: points 97/98 and their Section 3_z-sym rotations (85/86)
+            (97 98 86 85)
+            
+            // Face 35: points 98/99 and their Section 3_z-sym rotations (86/87)
+            (98 99 87 86)
+   
+        );
+    }
+    
+);
+
+// ************************************************************************* //
