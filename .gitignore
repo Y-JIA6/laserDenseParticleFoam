@@ -1,3 +1,22 @@
+# ===== Solver source (hidden until publication) =====
+LaserDPMFoam.C
+LaserAttenuation.H
+particleInfo.H
+createFields.H
+continuityErrs.H
+CourantNo.H
+pEqn.H
+UcEqn.H
+Allwmake
+Allwclean
+PSEUDOCODE_FLOW.md
+Make/
+DPMTurbulenceModels/
+DPMDyMFoam/
+MPPICFoam/
+气体粒子激光耦合技术文档.md
+粒子坐标转换详细算法.md
+
 # ===== OpenFOAM simulation results =====
 
 # Parallel decomposed directories
