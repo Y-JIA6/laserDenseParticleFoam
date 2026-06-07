@@ -1,0 +1,70 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2506                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      particleProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// =============================================================================
+// MULTI-MATERIAL MODE
+// =============================================================================
+// The 'materials' sub-dictionary enables per-material thermal properties.
+// List order (0-based) must match 'injectorID' in kinematicCloudProperties:
+//
+//   kinematicCloudProperties          particleProperties
+//   ─────────────────────────         ──────────────────────────────────
+//   model1 { injectorID 0; ... }  →   materials/Stellite6  (index 0)
+//   model2 { injectorID 1; ... }  →   materials/Ti6Al4V    (index 1)
+//
+// Particles with typeId = -1 (injectorID not set) fall back to index 0.
+// =============================================================================
+
+// Shared environment / gas properties (same for all materials)
+sigma       5.67e-8;    // Stefan-Boltzmann constant [W/(m^2·K^4)]
+T_amb       300.0;      // Ambient temperature [K]
+k_g         0.01580;    // Gas thermal conductivity [W/(m·K)]
+Pr_g        0.741;      // Gas Prandtl number [-]
+
+materials
+{
+    Stellite6
+    {
+        injectorID   0;         // must match 'injectorID' in kinematicCloudProperties/model1
+        alpha_laser  0.50;      // Laser absorptivity [-]
+        epsilon      0.3;       // Thermal emissivity [-]
+        cp           421.0;     // Specific heat [J/(kg·K)]
+        rhoP         8380.0;    // Density [kg/m^3]
+        L_f          2.92e5;    // Latent heat of fusion [J/kg]
+        T_sol        1533.0;    // Solidus  [K]
+        T_liq        1630.0;    // Liquidus [K]
+        T_init       300.0;     // Initial temperature [K]
+    }
+
+    Inconel625
+    {
+        // Ni-21Cr-9Mo-3.65Nb alloy  ρ=8440 kg/m³
+        // Ref: ASM Alloy Digest; laser absorptivity at 1064 nm for Ni-alloy powder
+        injectorID   1;         // must match 'injectorID' in kinematicCloudProperties/model2
+        alpha_laser  0.50;      // Laser absorptivity [-]  (Ni-based powder, 1064 nm)
+        epsilon      0.30;      // Thermal emissivity [-]
+        cp           410.0;     // Specific heat [J/(kg·K)]  (solid, 25°C)
+        rhoP         8440.0;    // Density [kg/m^3]
+        L_f          2.27e5;    // Latent heat of fusion [J/kg]
+        T_sol        1563.0;    // Solidus  [K]  (1290°C)
+        T_liq        1623.0;    // Liquidus [K]  (1350°C)
+        T_init       300.0;     // Initial temperature [K]
+    }
+
+}
+
+// ************************************************************************* //
