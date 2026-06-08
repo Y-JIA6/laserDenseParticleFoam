@@ -179,7 +179,7 @@ Pr_g        0.741;      // gas Prandtl number [-]  (Ar)
 Tutorial cases are located in `00test/`.  Each case includes an `Allrun` script:
 
 ```bash
-cd 00test/Laser_3D_refer_5gmin_newmesh
+cd 00test/Laser_3D_refer_5gmin
 ./Allrun
 ```
 
@@ -203,9 +203,10 @@ mpirun -np 10 LaserDPMFoam -parallel
 
 | Directory | Description |
 |-----------|-------------|
-| `Laser_3D_refer_3gmin_newmesh` | 3-D, 3 g/min powder feed rate |
-| `Laser_3D_refer_5gmin_newmesh` | 3-D, 5 g/min powder feed rate |
-| `Laser_3D_refer_5gmin_newmesh_multiMat` | 3-D, multi-material powder injection |
+| `Laser_3D_refer_3gmin` | 3-D, 3 g/min powder feed rate |
+| `Laser_3D_refer_5gmin` | 3-D, 5 g/min powder feed rate |
+| `Laser_3D_Stellite_Inconel_distribution1` | 3-D, multi-material powder injection |
+| `Laser_3D_Stellite_Inconel_distribution2` | 3-D, multi-material powder injection |
 
 ---
 
