@@ -269,6 +269,29 @@ each time step to handle particle migration correctly.
 
 ---
 
+## Citation
+
+If you use `LaserDPMFoam` in academic work, please cite the associated SSRN
+preprint:
+
+- [Associated preprint on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6910409)
+
+BibTeX entry:
+
+```bibtex
+@misc{laserdpmfoam_ssrn_6910409,
+  title        = {LaserDPMFoam associated preprint},
+  howpublished = {SSRN Electronic Journal},
+  note         = {Available at SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6910409},
+  year         = {2026}
+}
+```
+
+You can replace the placeholder title and year above with the final journal or
+preprint metadata if needed.
+
+---
+
 ## License
 
 OpenFOAM, and by extension the `LaserDPMFoam` solver, is licensed free and open
