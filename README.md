@@ -205,8 +205,13 @@ mpirun -np 10 LaserDPMFoam -parallel
 |-----------|-------------|
 | `Laser_3D_refer_3gmin` | 3-D, 3 g/min powder feed rate |
 | `Laser_3D_refer_5gmin` | 3-D, 5 g/min powder feed rate |
-| `Laser_3D_Stellite_Inconel_distribution1` | 3-D, multi-material powder injection |
-| `Laser_3D_Stellite_Inconel_distribution2` | 3-D, multi-material powder injection |
+| `Laser_3D_Stellite_Inconel_distribution1` | 3-D, Stellite/Inconel multi-material distribution case 1 |
+| `Laser_3D_Stellite_Inconel_distribution2` | 3-D, Stellite/Inconel multi-material distribution case 2 |
+
+### Demo Videos
+
+- [Temperature evolution demo](00test/Laser_3D_Stellite_Inconel_distribution1/Laser_Tp.ogv)
+- [Velocity/type evolution demo](00test/Laser_3D_Stellite_Inconel_distribution1/U_TypId.ogv)
 
 ---
 
