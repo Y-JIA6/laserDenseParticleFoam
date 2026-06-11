@@ -210,8 +210,17 @@ mpirun -np 10 LaserDPMFoam -parallel
 
 ### Demo Videos
 
-- [Temperature evolution demo](00test/Laser_3D_Stellite_Inconel_distribution1/Laser_Tp.ogv)
-- [Velocity/type evolution demo](00test/Laser_3D_Stellite_Inconel_distribution1/U_TypId.ogv)
+#### Temperature evolution
+
+![Temperature evolution demo](00test/Laser_3D_Stellite_Inconel_distribution1/Laser_Tp.gif)
+
+Video file: [Laser_Tp.ogv](00test/Laser_3D_Stellite_Inconel_distribution1/Laser_Tp.ogv)
+
+#### Velocity/type evolution
+
+![Velocity/type evolution demo](00test/Laser_3D_Stellite_Inconel_distribution1/U_TypId.gif)
+
+Video file: [U_TypId.ogv](00test/Laser_3D_Stellite_Inconel_distribution1/U_TypId.ogv)
 
 ---
 
