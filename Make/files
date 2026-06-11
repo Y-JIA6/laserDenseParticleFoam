@@ -1,0 +1,3 @@
+LaserDPMFoam.C
+
+EXE = $(FOAM_APPBIN)/LaserDPMFoam
