@@ -274,21 +274,21 @@ each time step to handle particle migration correctly.
 If you use `LaserDPMFoam` in academic work, please cite the associated SSRN
 preprint:
 
-- [Associated preprint on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6910409)
+- Jia, Yabo, *An open-source and extensible Eulerian--Lagrangian simulation toolkit for modeling laser--gas--powder interactions in laser powder directed energy deposition*.
+- Available at SSRN: <https://ssrn.com/abstract=6910409>
+- DOI link: <http://dx.doi.org/10.2139/ssrn.6910409>
 
 BibTeX entry:
 
 ```bibtex
 @misc{laserdpmfoam_ssrn_6910409,
-  title        = {LaserDPMFoam associated preprint},
+  author       = {Jia, Yabo},
+  title        = {An open-source and extensible Eulerian--Lagrangian simulation toolkit for modeling laser--gas--powder interactions in laser powder directed energy deposition},
   howpublished = {SSRN Electronic Journal},
-  note         = {Available at SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6910409},
+  note         = {Available at SSRN: https://ssrn.com/abstract=6910409 or http://dx.doi.org/10.2139/ssrn.6910409},
   year         = {2026}
 }
 ```
-
-You can replace the placeholder title and year above with the final journal or
-preprint metadata if needed.
 
 ---
 
