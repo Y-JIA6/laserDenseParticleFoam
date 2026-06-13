@@ -103,7 +103,8 @@ compatible OpenFOAM environment, then clone and build:
 
 ```bash
 git clone https://github.com/Y-JIA6/laserDenseParticleFoam.git
-cd LaserDPFoam && ./Allwmake
+cd laserDenseParticleFoam
+./Allwmake
 ```
 
 The `Allwmake` script first compiles the `DPMTurbulenceModels` library and then
