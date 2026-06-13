@@ -102,8 +102,8 @@ The `main` branch compiles with **OpenFOAM v2506**.  Install and source a
 compatible OpenFOAM environment, then clone and build:
 
 ```bash
-git clone <repository-url> LaserDPMFoam
-cd LaserDPMFoam && ./Allwmake
+git clone https://github.com/Y-JIA6/laserDenseParticleFoam.git
+cd LaserDPFoam && ./Allwmake
 ```
 
 The `Allwmake` script first compiles the `DPMTurbulenceModels` library and then
