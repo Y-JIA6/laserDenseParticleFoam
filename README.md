@@ -1,8 +1,8 @@
-# `LaserDPMFoam` solver
+# `LaserDPFoam` solver
 
 ## Overview
 
-`LaserDPMFoam` is an OpenFOAM solver for simulating gas–particle–laser coupled
+`LaserDPFoam` is an OpenFOAM solver for simulating gas–particle–laser coupled
 flows, with target applications in laser-based additive manufacturing processes
 such as Laser Directed Energy Deposition (L-DED) and laser powder-fed coating.
 
@@ -107,7 +107,7 @@ cd LaserDPMFoam && ./Allwmake
 ```
 
 The `Allwmake` script first compiles the `DPMTurbulenceModels` library and then
-the `LaserDPMFoam` executable, which is installed to `$FOAM_APPBIN`.
+the `LaserDPFoam` executable, which is installed to `$FOAM_APPBIN`.
 
 To clean all build artefacts:
 
@@ -196,7 +196,7 @@ blockMesh
 decomposePar
 
 # Run in parallel (e.g. on 10 cores)
-mpirun -np 10 LaserDPMFoam -parallel
+mpirun -np 10 LaserDPFoam -parallel
 ```
 
 ### Available Tutorial Cases
@@ -271,7 +271,7 @@ each time step to handle particle migration correctly.
 
 ## Citation
 
-If you use `LaserDPMFoam` in academic work, please cite the associated SSRN
+If you use `LaserDPFoam` in academic work, please cite the associated SSRN
 preprint:
 
 - Jia, Yabo, *An open-source and extensible Eulerian--Lagrangian simulation toolkit for modeling laser--gas--powder interactions in laser powder directed energy deposition*.
@@ -281,7 +281,7 @@ preprint:
 BibTeX entry:
 
 ```bibtex
-@misc{laserdpmfoam_ssrn_6910409,
+@misc{LaserDPFoam_ssrn_6910409,
   author       = {Jia, Yabo},
   title        = {An open-source and extensible Eulerian--Lagrangian simulation toolkit for modeling laser--gas--powder interactions in laser powder directed energy deposition},
   howpublished = {SSRN Electronic Journal},
@@ -294,7 +294,7 @@ BibTeX entry:
 
 ## License
 
-OpenFOAM, and by extension the `LaserDPMFoam` solver, is licensed free and open
+OpenFOAM, and by extension the `LaserDPFoam` solver, is licensed free and open
 source under the
 [GNU General Public Licence version 3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
