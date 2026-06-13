@@ -6,7 +6,7 @@
 flows, with target applications in laser-based additive manufacturing processes
 such as Laser Directed Energy Deposition (L-DED) and laser powder-fed coating.
 
-The solver extends the standard `DPMFoam` discrete-particle method (DPM) solver
+The solver extends the standard `denseParticleFoam` discrete-particle method (DPM) solver
 by adding a TEM00 Gaussian laser beam model and a per-particle thermal energy
 balance, enabling fully coupled simulation of:
 
